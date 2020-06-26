@@ -8,6 +8,7 @@ import (
 
 //定义全局redis连接池
 var pool *redis.Pool
+
 //设置操作超时时间
 var doWithTimeout = 500 * time.Millisecond
 
