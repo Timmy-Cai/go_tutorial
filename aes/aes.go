@@ -26,6 +26,13 @@ func main() {
 	decrypted := AesDecryptCBC(aaa, key)
 	log.Println("解密结果：", string(decrypted))
 
+	base64SafeStr := base64.RawURLEncoding.EncodeToString(encrypted)
+	log.Println("url safe 密文(base64)：", base64SafeStr)
+
+	base64DecodeSafeStr, _ := base64.RawURLEncoding.DecodeString(base64SafeStr)
+	decrypted = AesDecryptCBC(base64DecodeSafeStr, key)
+	log.Println("url safe 解密结果：", string(decrypted))
+
 	log.Println("------------------ ECB模式 --------------------")
 	encrypted = AesEncryptECB(origData, key)
 	log.Println("密文(hex)：", hex.EncodeToString(encrypted))
